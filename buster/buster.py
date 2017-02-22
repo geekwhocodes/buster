@@ -65,7 +65,7 @@ def main():
             for element in d('a'):
                 e = PyQuery(element)
                 href = e.attr('href')
-                if href is None
+                if href is None:
                     continue
 
                 if not abs_url_regex.search(href):
