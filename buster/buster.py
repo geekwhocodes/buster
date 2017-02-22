@@ -65,9 +65,6 @@ def main():
             for element in d('a'):
                 e = PyQuery(element)
                 href = e.attr('href')
-                if href is None:
-                    continue
-                    
                 if not abs_url_regex.search(href):
                     new_href = re.sub(r'rss/index\.html$', 'rss/index.rss', href)
                     new_href = re.sub(r'/index\.html$', '/', new_href)
@@ -136,7 +133,7 @@ def main():
         # Add README
         file_path = os.path.join(static_path, 'README.md')
         with open(file_path, 'w') as f:
-            f.write('# Blog\nPowered by [Ghost](http://ghost.org) and [Buster](https://github.com/axitkhurana/buster/).\n')
+            f.write('# Geekwhocodes Blog\n')
 
         print "All set! You can generate and deploy now."
 
@@ -148,6 +145,10 @@ def main():
         repo.index.commit('Blog update at {}'.format(current_time))
 
         origin = repo.remotes.origin
+        print "Pulling current branch..."
+        repo.git.execute(['git', 'pull', '-u', origin.name,
+                         repo.active_branch.name])
+
         repo.git.execute(['git', 'push', '-u', origin.name,
                          repo.active_branch.name])
         print "Good job! Deployed to Github Pages."
