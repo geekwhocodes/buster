@@ -147,14 +147,14 @@ def main():
         current_time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
         repo.index.commit('Blog update at {}'.format(current_time))
 
-        origin = repo.remotes.origin
-        print "Pulling current branch..."
-        repo.git.execute(['git', 'pull', '-u', origin.name,
-                         repo.active_branch.name])
-
+        # origin = repo.remotes.origin
+        # print "Pulling current branch..."
+        # repo.git.execute(['git', 'pull', '-u', origin.name,
+        #                  repo.active_branch.name])
+        print "Started..."
         repo.git.execute(['git', 'push', '-u', origin.name,
                          repo.active_branch.name])
-        print "Good job! Deployed to Github Pages."
+        print "Awesome! Deployed to Github Pages."
 
     elif arguments['add-domain']:
         repo = Repo(static_path)
