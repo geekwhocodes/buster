@@ -147,7 +147,7 @@ def main():
         current_time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
         repo.index.commit('Blog update at {}'.format(current_time))
 
-        # origin = repo.remotes.origin
+        origin = repo.remotes.origin
         # print "Pulling current branch..."
         # repo.git.execute(['git', 'pull', '-u', origin.name,
         #                  repo.active_branch.name])
